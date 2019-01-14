@@ -47,7 +47,7 @@ export class Game {
   this._ctx.font = '50px serif';
   this._ctx.fillStyle = 'red';
   this._ctx.fillText("Y O U  D I E D", this._width / 5, this._height / 2);
-}
+  }
 
   _checkState() {
     return this._player.dead;

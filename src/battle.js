@@ -5,9 +5,6 @@ export class Battle {
   }
 
   attack() {
-    // let player = this.player;
-    // let enemy = this.enemy;
-    // let battle = this;
     this.player.inBattle = true;
     this.enemy.inBattle = true;
     this._battleFreeze();
@@ -17,7 +14,6 @@ export class Battle {
         if (this.enemy.dead === true || this.player.dead === true) {
           this.player.inBattle = false;
           this.enemy.inBattle = false;
-          this._battleFreeze();
           clearInterval(playerAttack);
         } else {
           this.enemy.health -= this.player.attack;
@@ -42,9 +38,14 @@ export class Battle {
   }
 
   _battleFreeze() {
-    if (this.player.inBattle === true) {
-      this.player._speed = 0;
-    } else this.player._speed = 5;
+    setInterval(() => {
+      if (this.player.inBattle === true) {
+        this.player._speed = 0;
+      } else {
+        this.player._speed = 5;
+        clearInterval();
+      }
+    }, 100)
   }
 
   useHealthPotion() {
