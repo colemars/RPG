@@ -104,15 +104,17 @@ export class Character {
     }
   }
 
-  _battleRNG() {
-    if (this.inBattle === false && ((Date.now() - this.lastBattle) > 20000)) {
-      console.log(Date.now() - this.lastBattle);
-      let slime = new monster.Spider(this._ctx, this._width, this._height, 0, 0);
-      if (Math.floor(Math.random() * 100) < 5) {
-        let battle = new Battle(this, slime);
-        console.log(this);
-        battle.attack();
-        this.lastBattle = Date.now();
+  _battleRNG(e) {
+    if (this.keydown(e) != false) {
+      if (this.inBattle === false && ((Date.now() - this.lastBattle) > 20000)) {
+        console.log(Date.now() - this.lastBattle);
+        let slime = new monster.Spider(this._ctx, this._width, this._height, 0, 0);
+        if (Math.floor(Math.random() * 100) < 5) {
+          let battle = new Battle(this, slime);
+          console.log(this);
+          battle.attack();
+          this.lastBattle = Date.now();
+        }
       }
     }
   }
@@ -143,31 +145,28 @@ export class Character {
   }
 
   keydown(e) {
-
     let arrow = ARROW_MAP[e.keyCode];
 
     if (arrow === 'left') {
-      // debugger;
       if (!(this._x - this._speed < 20)) {
         this._x -= this._speed;
       }
-    }
-    if (arrow === 'right') {
+    } else if (arrow === 'right') {
       if (!(this._x + this._speed > 475)) {
         this._x += this._speed;
       }
-    }
-    if (arrow === 'up') {
+    } else if (arrow === 'up') {
       if (!(this._y + this._speed > 390)) {
         // console.log(this._y);
         this._y += this._speed;
       }
       // this._y += this._speed;
-    }
-    if (arrow === 'down') {
+    } else if (arrow === 'down') {
       if (!(this._y - this._speed < 20)) {
         this._y -= this._speed;
       }
+    } else {
+      return false;
     }
   }
 }

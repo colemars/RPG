@@ -1,8 +1,4 @@
 import { Character } from './../src/character.js';
-import { Knight } from './../src/knight.js';
-import { Wizard } from './../src/wizard.js';
-import { Monster } from './../src/monster.js';
-import { Battle } from './../src/battle.js';
 
 describe('Character', function() {
 
